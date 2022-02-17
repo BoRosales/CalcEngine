@@ -16,7 +16,9 @@ public class Main {
             }
             for (double currentResult : results)
                 System.out.println(currentResult);
-        } else if(args.length == 3)
+        } else if(args.length == 1 && args[0].equals("interactive"))
+            executeInteractively();
+        else if(args.length == 3)
             handleCommandLine(args);
         else
             System.out.println("Please provide an operation code and 2 numeric values.");
