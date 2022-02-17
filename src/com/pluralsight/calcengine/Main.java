@@ -42,7 +42,8 @@ public class Main {
 
     private static void displayResult(char opCode, double leftVal, double rightVal, double result) {
         char symbol = symbolFromOpCode(opCode);
-        StringBuilder builder = new StringBuilder(20);
+
+        /*StringBuilder builder = new StringBuilder(20);
         builder.append(leftVal);
         builder.append(" ");
         builder.append(symbol);
@@ -50,7 +51,9 @@ public class Main {
         builder.append(rightVal);
         builder.append(" = ");
         builder.append(result);
-        String output = builder.toString();
+        String output = builder.toString();*/
+
+        String output = String.format("%.3f %c %.3f = %.3f", leftVal, symbol,rightVal, result);
         System.out.println(output);
     }
 
@@ -99,8 +102,7 @@ public class Main {
     }
 
     static char opCodeFromString(String operationName) {
-        char opCode = operationName.charAt(0);
-        return opCode;
+        return operationName.charAt(0);
     }
 
     static double valueFromWord(String word) {
