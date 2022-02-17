@@ -56,16 +56,6 @@ public class Main {
     private static void displayResult(char opCode, double leftVal, double rightVal, double result) {
         char symbol = symbolFromOpCode(opCode);
 
-        /*StringBuilder builder = new StringBuilder(20);
-        builder.append(leftVal);
-        builder.append(" ");
-        builder.append(symbol);
-        builder.append(" ");
-        builder.append(rightVal);
-        builder.append(" = ");
-        builder.append(result);
-        String output = builder.toString();*/
-
         String output = String.format("%.3f %c %.3f = %.3f", leftVal, symbol,rightVal, result);
         System.out.println(output);
     }
@@ -123,13 +113,19 @@ public class Main {
                 "zero", "one", "two", "three", "four",
                 "five", "six", "seven", "eight", "nine"
         };
-        double value = 0d;
+        // Magic number > if user matches on a word
+        // if value is still set to -1 we never matched
+        // make assumption that number was entered
+        double value = -1d;
         for(int index = 0; index < numberWords.length; index++) {
             if (word.equals(numberWords[index])) {
                 value = index;
                 break;
             }
         }
+        if(value == -1d)
+            value = Double.parseDouble(word);
+
         return value;
     }
 }
