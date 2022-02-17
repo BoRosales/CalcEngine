@@ -35,7 +35,7 @@ public class Main {
 
     private static void performOperation(String[] parts) {
         char opCode = opCodeFromString(parts[0]);
-        if(opCode == 'w')
+        if(opCode == 'w') // handles user input of "when"
             handleWhen(parts);
         else {
             double leftVal = valueFromWord(parts[1]);
