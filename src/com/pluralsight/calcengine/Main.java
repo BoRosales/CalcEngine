@@ -16,17 +16,17 @@ public class Main {
         equations[2] = create(225.0d, 17.0d, 's');
         equations[3] = create(11.0d, 3.0d, 'm');
 
-        for(MathEquation equation : equations) {
-            equation.execute();
-            System.out.println("result = " + equation.result);
-        }
-
-/*        if(args.length == 1 && args[0].equals("interactive"))
+        if (args.length == 0) {
+            for(MathEquation equation : equations) {
+                equation.execute();
+                System.out.println("result = " + equation.result);
+            }
+        } else if(args.length == 1 && args[0].equals("interactive"))
             executeInteractively();
         else if(args.length == 3)
             handleCommandLine(args);
         else
-            System.out.println("Please provide an operation code and 2 numeric values.");*/
+            System.out.println("Please provide an operation code and 2 numeric values.");
     }
 
     private static MathEquation create(double leftVal, double rightVal, char opCode) {
@@ -53,8 +53,9 @@ public class Main {
         else {
             double leftVal = valueFromWord(parts[1]);
             double rightVal = valueFromWord(parts[2]);
-            double result = 0; //execute(opCode, leftVal, rightVal);
-            displayResult(opCode, leftVal, rightVal, result);
+            MathEquation equation = create(leftVal, rightVal, opCode);
+            equation.execute();
+            displayResult(equation.opCode, equation.leftVal, equation.rightVal, equation.result);
         }
     }
 
@@ -90,8 +91,9 @@ public class Main {
         char opCode = args[0].charAt(0);
         double leftVal = Double.parseDouble(args[1]);
         double rightVal = Double.parseDouble(args[2]);
-        double result = 0; //execute(opCode, leftVal, rightVal);
-        System.out.println(result);
+        MathEquation equation = create(leftVal, rightVal, opCode);
+        equation.execute();
+        System.out.println(equation.result);
     }
 
     static char opCodeFromString(String operationName) {
