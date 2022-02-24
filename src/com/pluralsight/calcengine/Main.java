@@ -11,15 +11,15 @@ public class Main {
 
     private static void performCalculations(String[] args) {
         MathEquation[] equations = new MathEquation[4];
-        equations[0] = create(100.0d, 50.0d, 'd');
-        equations[1] = create(25.0d, 92.0d, 'a');
-        equations[2] = create(225.0d, 17.0d, 's');
-        equations[3] = create(11.0d, 3.0d, 'm');
+        equations[0] = new MathEquation('d', 100.0d, 50.0d);
+        equations[1] = new MathEquation('a', 25.0d, 92.0d);
+        equations[2] = new MathEquation('s', 25.0d, 17.0d);
+        equations[3] = new MathEquation('m', 11.0d, 3.0d);
 
         if (args.length == 0) {
             for(MathEquation equation : equations) {
                 equation.execute();
-                System.out.println("result = " + equation.result);
+                System.out.println("Result = " + equation.result);
             }
         } else if(args.length == 1 && args[0].equals("interactive"))
             executeInteractively();
@@ -27,14 +27,6 @@ public class Main {
             handleCommandLine(args);
         else
             System.out.println("Please provide an operation code and 2 numeric values.");
-    }
-
-    private static MathEquation create(double leftVal, double rightVal, char opCode) {
-        MathEquation equation = new MathEquation();
-        equation.leftVal = leftVal;
-        equation.rightVal = rightVal;
-        equation.opCode = opCode;
-        return equation;
     }
 
 
@@ -53,7 +45,7 @@ public class Main {
         else {
             double leftVal = valueFromWord(parts[1]);
             double rightVal = valueFromWord(parts[2]);
-            MathEquation equation = create(leftVal, rightVal, opCode);
+            MathEquation equation = new MathEquation(opCode, leftVal, rightVal);
             equation.execute();
             displayResult(equation.opCode, equation.leftVal, equation.rightVal, equation.result);
         }
@@ -91,7 +83,7 @@ public class Main {
         char opCode = args[0].charAt(0);
         double leftVal = Double.parseDouble(args[1]);
         double rightVal = Double.parseDouble(args[2]);
-        MathEquation equation = create(leftVal, rightVal, opCode);
+        MathEquation equation = new MathEquation(opCode, leftVal, rightVal);
         equation.execute();
         System.out.println(equation.result);
     }
