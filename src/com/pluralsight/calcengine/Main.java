@@ -13,7 +13,7 @@ public class Main {
         MathEquation[] equations = new MathEquation[4];
         equations[0] = new MathEquation('d', 100.0d, 50.0d);
         equations[1] = new MathEquation('a', 25.0d, 92.0d);
-        equations[2] = new MathEquation('s', 25.0d, 17.0d);
+        equations[2] = new MathEquation('s', 225.0d, 17.0d);
         equations[3] = new MathEquation('m', 11.0d, 3.0d);
 
         if (args.length == 0) {
@@ -27,6 +27,8 @@ public class Main {
             handleCommandLine(args);
         else
             System.out.println("Please provide an operation code and 2 numeric values.");
+
+        System.out.println("Average result = " + MathEquation.getAverageResult());
     }
 
 

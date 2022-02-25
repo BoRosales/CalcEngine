@@ -7,6 +7,9 @@ public class MathEquation {
     char opCode;
     double result;
 
+    private static int numberOfCalculations;
+    private static int sumOfResults;
+
     public MathEquation() {}
 
     public MathEquation(char opCode) {
@@ -39,17 +42,36 @@ public class MathEquation {
                 result = 0.0d;
                 break;
         }
+
+        numberOfCalculations++;
+        sumOfResults += result;
     }
 
-    void setLeftVal(double leftVal) {
+    public static double getAverageResult() {
+        return sumOfResults / numberOfCalculations;
+    }
+
+    public double getLeftVal() {
+        return leftVal;
+    }
+
+    public void setLeftVal(double leftVal) {
         this.leftVal = leftVal;
     }
 
-    void setRightVal(double rightVal) {
+    public double getRightVal(double rightVal) {
+        return rightVal;
+    }
+
+    public void setRightVal(double rightVal) {
         this.rightVal = rightVal;
     }
 
-    void setOpCode(char opCode) {
+    public char getOpCode(char opCode) {
+        return opCode;
+    }
+
+    public void setOpCode(char opCode) {
         this.opCode = opCode;
     }
 }
