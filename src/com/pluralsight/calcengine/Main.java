@@ -6,7 +6,13 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        performCalculations(args);
+        //performCalculations(args);
+
+        Divider divider = new Divider();
+        doCalculation(divider, 100.0d, 50.0d);
+
+        Adder adder = new Adder();
+        doCalculation(adder, 25.0d, 92.0d);
     }
 
     private static void performCalculations(String[] args) {
@@ -54,6 +60,13 @@ public class Main {
         String userInput = scanner.nextLine();
         String[] parts = userInput.split(" ");
         performOperation(parts);
+    }
+
+    static void doCalculation(CalculateBase calculation, double leftVal, double rightVal) {
+        calculation.setLeftVal(leftVal);
+        calculation.setRightVal(rightVal);
+        calculation.calculate();
+        System.out.println("Calculation result =  " + calculation.getResult());
     }
 
     private static void performOperation(String[] parts) {
