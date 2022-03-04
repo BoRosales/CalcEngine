@@ -13,6 +13,8 @@ public class Main {
 
         Adder adder = new Adder();
         doCalculation(adder, 25.0d, 92.0d);
+
+
     }
 
     private static void performCalculations(String[] args) {
