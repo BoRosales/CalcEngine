@@ -2,20 +2,27 @@ package com.pluralsight.calcengine;
 
 import java.lang.invoke.SwitchPoint;
 import java.time.LocalDate;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
+        // This method takes user input
         //performCalculations(args);
 
-        Divider divider = new Divider();
-        doCalculation(divider, 100.0d, 50.0d);
+        //executeInteractively();
 
-        Adder adder = new Adder();
-        doCalculation(adder, 25.0d, 92.0d);
+        dynamicInteractivity();
 
-        performMoreCalculations();
+/*        Divider divider = new Divider();
+        doCalculation(divider, 100.0d, 50.0d);*/
+
+/*        Adder adder = new Adder();
+        doCalculation(adder, 25.0d, 92.0d);*/
+
+        // This method doesn't accept user input yet
+        //performMoreCalculations();
     }
 
     private static CalculateBase createCalculation(MathOperation operation, double leftVal, double rightVal) {
@@ -93,12 +100,24 @@ public class Main {
         System.out.println("Overloaded result with ints: " + equationOverload.getResult());
     }
 
+    private static void dynamicInteractivity(){
+        DynamicHelper helper = new DynamicHelper(new MathProcessing[] {
+                new Adder()
+        });
+
+        System.out.println("Enter an operation and two numbers");
+        Scanner scanner = new Scanner(System.in);
+        String userInput = scanner.nextLine();
+
+        helper.process(userInput);
+    }
+
     static void executeInteractively() {
         System.out.println("Enter an operation and two numbers:");
         Scanner scanner = new Scanner(System.in);
         String userInput = scanner.nextLine();
         String[] parts = userInput.split(" ");
-        performOperation(parts);
+        enumPerformOperation(parts);
     }
 
     static void doCalculation(CalculateBase calculation, double leftVal, double rightVal) {
@@ -108,6 +127,18 @@ public class Main {
         System.out.println("Calculation result =  " + calculation.getResult());
     }
 
+    // This was part of classes and interfaces
+    private static void enumPerformOperation(String[] parts) {
+        MathOperation operation = MathOperation.valueOf(parts[0].toUpperCase());
+        double leftVal = Double.parseDouble(parts[1]);
+        double rightVal = Double.parseDouble(parts[2]);
+        CalculateBase calculation = createCalculation(operation, leftVal, rightVal);
+        calculation.calculate();
+        System.out.println("Operation performed: " + operation);
+        System.out.println(calculation.getResult());
+    }
+
+    // This was created as intro to java fundamentals
     private static void performOperation(String[] parts) {
         char opCode = opCodeFromString(parts[0]);
         if(opCode == 'w') // handles user input of "when"
@@ -182,4 +213,5 @@ public class Main {
 
         return value;
     }
+
 }
