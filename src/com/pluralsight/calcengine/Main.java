@@ -104,7 +104,9 @@ public class Main {
         DynamicHelper helper = new DynamicHelper(new MathProcessing[] {
                 new Adder(),
                 new PowerOf(),
-
+                new Subtracter(),
+                new Divider(),
+                new Multiplier()
         });
 
         System.out.println("Enter an operation and two numbers");

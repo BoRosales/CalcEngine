@@ -5,4 +5,7 @@ public interface MathProcessing {
     String getKeyWord();
     double doCalculation(double leftVal, double rightVal);
 
+    default String getFormattedOutput() {
+        return null;
+    }
 }
