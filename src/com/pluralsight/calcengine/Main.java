@@ -102,7 +102,9 @@ public class Main {
 
     private static void dynamicInteractivity(){
         DynamicHelper helper = new DynamicHelper(new MathProcessing[] {
-                new Adder()
+                new Adder(),
+                new PowerOf(),
+
         });
 
         System.out.println("Enter an operation and two numbers");

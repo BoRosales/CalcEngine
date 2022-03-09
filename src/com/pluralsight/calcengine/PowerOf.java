@@ -8,6 +8,6 @@ public class PowerOf implements MathProcessing {
 
     @Override
     public double doCalculation(double leftVal, double rightVal) {
-        return 0;
+        return Math.pow(leftVal, rightVal);
     }
 }
